@@ -5,6 +5,10 @@ def extract_db_details(db):
     # Iterate over each collection
     for collection_name in collection_names:
         collection = db[collection_name]
+        indexes = collection.list_indexes()
+        indexes_dict={}
+        for index in indexes:
+            indexes_dict[index['name']] = list(index['key'].keys())
         # count = collection.count_documents({})   
         # print(f"{collection.name} : {count}")
         collection_stats= db.command("collstats", collection_name) 
@@ -18,6 +22,8 @@ def extract_db_details(db):
         stats_dict["total_index_size_on_disk"] = collection_stats['totalIndexSize']
         stats_dict["each_index_sizes"] = collection_stats['indexSizes']
         stats_dict["total_collection_size_on_disk"] = collection_stats['totalSize']
+
+        stats_dict["indexes"]=indexes_dict
         collection_details[collection_name] = stats_dict
     return collection_details
 
