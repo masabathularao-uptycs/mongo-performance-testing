@@ -10,14 +10,14 @@ def extract_db_details(db):
         collection_stats= db.command("collstats", collection_name) 
         stats_dict={}
         stats_dict["collection_name"] = collection_stats['ns']
-        stats_dict["collection_size"] = collection_stats['size']
+        stats_dict["uncompressed_data_size"] = collection_stats['size']
         stats_dict["count"] = collection_stats['count']
-        stats_dict["storage_size"] = collection_stats['storageSize']
+        stats_dict["storage_size_on_disk"] = collection_stats['storageSize']
         stats_dict["avg_obj_size"] = collection_stats['avgObjSize']
         stats_dict["num_indexes"] = collection_stats['nindexes']
-        stats_dict["total_index_size"] = collection_stats['totalIndexSize']
+        stats_dict["total_index_size_on_disk"] = collection_stats['totalIndexSize']
         stats_dict["each_index_sizes"] = collection_stats['indexSizes']
-        stats_dict["total_collection_size"] = collection_stats['totalSize']
+        stats_dict["total_collection_size_on_disk"] = collection_stats['totalSize']
         collection_details[collection_name] = stats_dict
     return collection_details
 
