@@ -16,14 +16,14 @@ collection_names = list(db.list_collection_names())
 # print(json.dumps(database_details,indent=4))
 
 
-# variables_list= [(db[collection_name],collection_name) for collection_name in collection_names]
-# with concurrent.futures.ThreadPoolExecutor() as executor:
-#     futures = [executor.submit(start_upsertion, *variables) for variables in variables_list]
-#     concurrent.futures.wait(futures)
+variables_list= [(db[collection_name],collection_name) for collection_name in collection_names]
+with concurrent.futures.ThreadPoolExecutor() as executor:
+    futures = [executor.submit(start_upsertion, *variables) for variables in variables_list]
+    concurrent.futures.wait(futures)
 
-for collection_name in collection_names:
-    collection = db[collection_name]
-    start_upsertion(collection,collection_name)
+# for collection_name in collection_names:
+#     collection = db[collection_name]
+#     start_upsertion(collection,collection_name)
 
 
 

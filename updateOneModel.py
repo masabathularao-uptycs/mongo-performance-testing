@@ -7,13 +7,12 @@ collection = db["your_collection_name"]
 
 # Define a list of update operations using UpdateOneModel
 update_operations = [
-    UpdateOne({"_id": 1}, {"$set": {"field1": "value1"}}),
-    UpdateOne({"_id": 2}, {"$set": {"field2": "value2"}}),
-    # Add more UpdateOneModel instances as needed
+    UpdateOne({"_id": 5}, {"$set": {"field1": "value10000"}},upsert=True),
+    UpdateOne({"_id": 6}, {"$set": {"field2": "value200"}},upsert=True),
 ]
 
-# Perform bulk write operation
 result = collection.bulk_write(update_operations)
 
-# Print result
 print("Modified count:", result.modified_count)
+print("Inserted count:", result.upserted_count)
+
