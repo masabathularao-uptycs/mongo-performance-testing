@@ -15,7 +15,7 @@ db = client.get_database(database_name)
 # print(json.dumps(collections_details,indent=4))
 # print(json.dumps(database_details,indent=4))
 
-collection_names = db.list_collection_names()
+collection_names = list(db.list_collection_names())
 
 for collection_name in collection_names:
     collection = db[collection_name]

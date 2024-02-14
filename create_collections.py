@@ -5,6 +5,7 @@ def create_collections(db):
     print("Current no. of collections : " , num)
     if num < TOTAL_COLLECTIONS:
         for i in range(TOTAL_COLLECTIONS-num):
+            print(i)
             collection_name = f"collection_{str(uuid.uuid4())}"
             db.create_collection(collection_name)
 
