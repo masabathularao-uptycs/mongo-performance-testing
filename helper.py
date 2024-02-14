@@ -17,7 +17,8 @@ def extract_db_details(db):
         stats_dict["uncompressed_data_size"] = collection_stats['size']
         stats_dict["count"] = collection_stats['count']
         stats_dict["storage_size_on_disk"] = collection_stats['storageSize']
-        stats_dict["avg_obj_size"] = collection_stats['avgObjSize']
+        try:stats_dict["avg_obj_size"] = collection_stats['avgObjSize']
+        except:pass
         stats_dict["num_indexes"] = collection_stats['nindexes']
         stats_dict["total_index_size_on_disk"] = collection_stats['totalIndexSize']
         stats_dict["each_index_sizes"] = collection_stats['indexSizes']
