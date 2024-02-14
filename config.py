@@ -2,7 +2,7 @@ from bson import ObjectId
 import uuid
 from datetime import datetime
 
-database_name="upt_app"
+database_name="database"
 collection_name="collection"
 node="s1cloudsim1c"
 
@@ -21,7 +21,7 @@ def generate_update_filter(collection_name):
     doc['upt_table_name']= upt_table_name if upt_table_name!="" else collection_name
     doc['upt_table_key_value'] = 'i-00e843dd029a80939'
     doc['upt_table_key_name']= 'instance_id'
-    print(doc)
+    # print(doc)
     return doc
 
 
@@ -38,9 +38,13 @@ def generate_update_filter(collection_name):
 def upsert_document(collection,collection_name):
     update_filter = generate_update_filter(collection_name)
     result = collection.update_one(update_filter, {"$set": base_document}, upsert=True)
-    print(result)
+    if result.upserted_id:
+        print(f"Document inserted into '{collection_name}' with ID:", result.upserted_id)
+    else:
+        print(f"****************** ERROR : Document updated while trying to insert into '{collection_name}', update_filter provided : {update_filter} *********************")
     pass #should i use BulkWrite UpdateOne or a simple update_one?
 
 def start_upsertion(collection,collection_name,n):
     for _ in range(n):
+        print(f"Inserting into '{collection_name}' , count : {_}")
         upsert_document(collection,collection_name)
