@@ -44,7 +44,8 @@ def upsert_document(collection,collection_name):
     update_filter = generate_update_filter(collection_name)
     result = collection.update_one(update_filter, {"$set": base_document}, upsert=True)
     if result.upserted_id:
-        print(f"Document inserted into '{collection_name}' with ID:", result.upserted_id)
+        # print(f"Document inserted into '{collection_name}' with ID:", result.upserted_id)
+        pass
     else:
         print(f"****************** ERROR : Document updated while trying to insert into '{collection_name}', update_filter provided : {update_filter} *********************")
     pass #should i use BulkWrite UpdateOne or a simple update_one?
