@@ -6,9 +6,9 @@ database_name="database"
 collection_name="collection"
 node="s1cloudsim1c"
 
-TOTAL_COLLECTIONS=10
+TOTAL_COLLECTIONS=500
 THREADS_FOR_EACH_COLLECTION=10
-NUM_DOCS_EACH_THREAD_TO_INSERT=10
+NUM_DOCS_EACH_THREAD_TO_INSERT=200
 
 
 # Largest document found in collection 'aws_principal_cloudaudit':
