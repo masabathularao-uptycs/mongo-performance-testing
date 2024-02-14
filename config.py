@@ -7,8 +7,8 @@ database_name="database"
 collection_name="collection"
 node="s1cloudsim1c"
 
-TOTAL_COLLECTIONS=100
-NUM_DOCS_EACH_THREAD_TO_INSERT=100
+TOTAL_COLLECTIONS=200
+NUM_DOCS_EACH_THREAD_TO_INSERT=200
 
 
 # Largest document found in collection 'aws_principal_cloudaudit':
@@ -42,7 +42,7 @@ def generate_update_filter(collection_name):
 
 def upsert_documents(collection,collection_name):
     # update_filter = generate_update_filter(collection_name)
-    # result = collection.update_one(update_filter, {"$set": base_document}, upsert=True)
+    # result = collection.update_one(update_filter, {"$set": get_base_document()}, upsert=True)
     update_operations = [
         UpdateOne(generate_update_filter(collection_name), {"$set": get_base_document()},upsert=True),
         UpdateOne(generate_update_filter(collection_name), {"$set": get_base_document()},upsert=True),
