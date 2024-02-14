@@ -9,9 +9,6 @@ def create_collections(db):
             collection_name = f"collection_{str(uuid.uuid4())}"
             db.create_collection(collection_name)
 
-from pymongo import MongoClient
-
-client = MongoClient("mongodb://localhost:27017")
-
+client = connect(TAG)
 db = client.get_database(database_name)
 create_collections(db)

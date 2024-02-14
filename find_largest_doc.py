@@ -1,8 +1,6 @@
-from pymongo import MongoClient
 from config import *
 import json
-client = MongoClient("mongodb://localhost:27017")
-
+client = connect(TAG)
 db = client.get_database(database_name)
 # collection = db.get_collection(collection_name)
 largest_size = 0

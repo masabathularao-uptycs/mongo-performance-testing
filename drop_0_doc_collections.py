@@ -1,11 +1,7 @@
-from pymongo import MongoClient
 from config import *
 
-client = MongoClient("mongodb://localhost:27017")
-
+client = connect(TAG)
 db = client.get_database(database_name)
-# collection = db.get_collection(collection_name)
-
 collection_names = db.list_collection_names()
 
 # Iterate over each collection

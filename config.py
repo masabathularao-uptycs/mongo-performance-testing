@@ -1,11 +1,12 @@
 from bson import ObjectId
 import uuid
 from datetime import datetime
-from pymongo import UpdateOne
+from pymongo import UpdateOne,MongoClient
 
+TAG="local"
 database_name="database"
 collection_name="collection"
-node="s1cloudsim1c"
+remote_node="s1cloudsim1c"
 
 TOTAL_COLLECTIONS=200
 NUM_DOCS_EACH_THREAD_TO_INSERT=200
@@ -61,3 +62,21 @@ def start_upsertion(collection,collection_name):
     for _ in range(NUM_DOCS_EACH_THREAD_TO_INSERT):
         print(f"Inserting into '{collection_name}' , count : {_}")
         upsert_documents(collection,collection_name)
+
+
+def connect(TAG):
+
+    if TAG == "remote":
+        mongo_uri = f"mongodb://root:rootpassword@{remote_node}:30001/{database_name}?authSource=admin&w=1"
+
+        # Create a MongoClient instance with TLS settings
+        client = MongoClient(
+            mongo_uri,
+            tls=True,
+            tlsCAFile="ca.crt",  # Specify the path to the CA certificate file
+            tlsAllowInvalidHostnames=True
+        )
+    elif TAG == "local":
+        client = MongoClient("mongodb://localhost:27017")
+
+    return client

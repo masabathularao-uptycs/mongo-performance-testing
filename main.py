@@ -1,12 +1,10 @@
-from pymongo import MongoClient
 from config import *
 from helper import *
 import json,time
 import concurrent.futures
 start_time = time.time()
 
-client = MongoClient("mongodb://localhost:27017")
-
+client = connect(TAG)
 db = client.get_database(database_name)
 collection_names = list(db.list_collection_names())
 
