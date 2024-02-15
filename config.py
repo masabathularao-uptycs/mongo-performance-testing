@@ -9,7 +9,7 @@ collection_name="collection"
 remote_node="s1cloudsim1c"
 
 TOTAL_COLLECTIONS=200
-NUM_DOCS_EACH_THREAD_TO_INSERT=200
+NUM_DOCS_EACH_THREAD_TO_INSERT=1667
 
 
 # Largest document found in collection 'aws_principal_cloudaudit':
