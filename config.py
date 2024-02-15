@@ -3,9 +3,9 @@ import uuid
 from datetime import datetime
 from pymongo import UpdateOne,MongoClient
 
-TAG="remote"
+TAG="local"
 database_name="database"
-collection_name="collection"
+# collection_name="collection"
 remote_node="s1cloudsim1c"
 
 TOTAL_COLLECTIONS=10

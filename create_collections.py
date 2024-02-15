@@ -6,7 +6,7 @@ def create_collections(db):
     if num < TOTAL_COLLECTIONS:
         for i in range(TOTAL_COLLECTIONS-num):
             print(i)
-            collection_name = f"collection_{str(uuid.uuid4())}"
+            collection_name = f"aws_{str(uuid.uuid4())}_cloudaudit"
             db.create_collection(collection_name)
 
 client = connect(TAG)
