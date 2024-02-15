@@ -3,13 +3,13 @@ import uuid
 from datetime import datetime
 from pymongo import UpdateOne,MongoClient
 
-TAG="local"
+TAG="remote"
 database_name="database"
 # collection_name="collection"
 remote_node="s1cloudsim1c"
 
 TOTAL_COLLECTIONS=250
-NUM_DOCS_EACH_THREAD_TO_INSERT=1334
+NUM_DOCS_EACH_THREAD_TO_INSERT=1334*10
 UPDATES_IN_EACH_BULKWRITE=3
 
 
