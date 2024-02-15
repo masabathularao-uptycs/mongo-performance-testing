@@ -20,7 +20,9 @@ with open(file_path, mode='a', newline='') as file:
     while True:
         time.sleep(60)
         objects = int(db.command("dbstats")["objects"])
-        if objects==0:continue
+        if objects==0:
+            start_time = time.time()
+            continue
         curr_time = time.time()
         time_taken_till_now = curr_time - start_time
         ist_now = datetime.now(ist)
