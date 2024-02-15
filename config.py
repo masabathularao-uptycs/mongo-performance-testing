@@ -57,7 +57,7 @@ def upsert_documents(collection,collection_name):
 
 def start_upsertion(collection,collection_name):
     for _ in range(NUM_DOCS_EACH_THREAD_TO_INSERT):
-        print(f"Inserting into '{collection_name}' , count : {_}")
+        print(f"Upserting {UPDATES_IN_EACH_BULKWRITE} documents into '{collection_name}' , count : {_}")
         upsert_documents(collection,collection_name)
 
 
