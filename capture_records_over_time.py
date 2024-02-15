@@ -18,6 +18,7 @@ file_path = f"csv/{datetime.now(ist).strftime('%Y-%m-%d %H:%M')}_num_docs.csv"
 with open(file_path, mode='a', newline='') as file:
     writer = csv.writer(file)
     while True:
+        time.sleep(60)
         objects = int(db.command("dbstats")["objects"])
         if objects==0:continue
         curr_time = time.time()
@@ -27,4 +28,4 @@ with open(file_path, mode='a', newline='') as file:
         new_row = [ist_now_str,time_taken_till_now,objects]
         writer.writerow(new_row)
         file.flush()
-        time.sleep(60)
+        
