@@ -37,6 +37,7 @@ collection_names = list(db.list_collection_names())
 
 # collections_details=extract_db_details(db)
 database_details = db.command("dbstats")
-print(database_details)
 # print(json.dumps(collections_details,indent=4))
+print(database_details)
+
 # print(json.dumps(database_details,indent=4))
