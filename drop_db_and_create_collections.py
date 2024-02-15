@@ -15,5 +15,6 @@ def create_collections(db):
 
 
 client = connect(TAG)
+client.drop_database(database_name)
 db = client.get_database(database_name)
 create_collections(db)
