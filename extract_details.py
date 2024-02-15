@@ -1,3 +1,6 @@
+from config import *
+import json
+
 def extract_db_details(db):
     collection_names = db.list_collection_names()
     collection_details={}
@@ -28,3 +31,12 @@ def extract_db_details(db):
         collection_details[collection_name] = stats_dict
     return collection_details
 
+client = connect(TAG)
+db = client.get_database(database_name)
+collection_names = list(db.list_collection_names())
+
+collections_details=extract_db_details(db)
+database_details = db.command("dbstats")
+print(database_details)
+print(json.dumps(collections_details,indent=4))
+# print(json.dumps(database_details,indent=4))

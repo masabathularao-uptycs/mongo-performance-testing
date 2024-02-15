@@ -1,17 +1,11 @@
 from config import *
-from helper import *
-import json,time
+import time
 import concurrent.futures
 start_time = time.time()
 
 client = connect(TAG)
 db = client.get_database(database_name)
 collection_names = list(db.list_collection_names())
-
-# collections_details=extract_db_details(db)
-# database_details = db.command("dbstats")
-# print(json.dumps(collections_details,indent=4))
-# print(json.dumps(database_details,indent=4))
 
 
 variables_list= [(db[collection_name],collection_name) for collection_name in collection_names]

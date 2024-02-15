@@ -3,13 +3,13 @@ import uuid
 from datetime import datetime
 from pymongo import UpdateOne,MongoClient
 
-TAG="local"
+TAG="remote"
 database_name="database"
 collection_name="collection"
 remote_node="s1cloudsim1c"
 
-TOTAL_COLLECTIONS=200
-NUM_DOCS_EACH_THREAD_TO_INSERT=1667
+TOTAL_COLLECTIONS=10
+NUM_DOCS_EACH_THREAD_TO_INSERT=10
 
 
 # Largest document found in collection 'aws_principal_cloudaudit':
