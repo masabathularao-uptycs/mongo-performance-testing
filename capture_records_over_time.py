@@ -27,3 +27,4 @@ with open(file_path, mode='a', newline='') as file:
         new_row = [ist_now_str,time_taken_till_now,objects]
         writer.writerow(new_row)
         file.flush()
+        time.sleep(60)
