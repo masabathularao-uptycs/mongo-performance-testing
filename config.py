@@ -8,8 +8,9 @@ database_name="database"
 # collection_name="collection"
 remote_node="s1cloudsim1c"
 
-TOTAL_COLLECTIONS=10
-NUM_DOCS_EACH_THREAD_TO_INSERT=10
+TOTAL_COLLECTIONS=250
+NUM_DOCS_EACH_THREAD_TO_INSERT=1334
+UPDATES_IN_EACH_BULKWRITE=3
 
 
 # Largest document found in collection 'aws_principal_cloudaudit':
@@ -44,11 +45,7 @@ def generate_update_filter(collection_name):
 def upsert_documents(collection,collection_name):
     # update_filter = generate_update_filter(collection_name)
     # result = collection.update_one(update_filter, {"$set": get_base_document()}, upsert=True)
-    update_operations = [
-        UpdateOne(generate_update_filter(collection_name), {"$set": get_base_document()},upsert=True),
-        UpdateOne(generate_update_filter(collection_name), {"$set": get_base_document()},upsert=True),
-        UpdateOne(generate_update_filter(collection_name), {"$set": get_base_document()},upsert=True),
-    ]
+    update_operations = [UpdateOne(generate_update_filter(collection_name), {"$set": get_base_document()},upsert=True) for _ in range(UPDATES_IN_EACH_BULKWRITE)]
 
     result = collection.bulk_write(update_operations)
 
