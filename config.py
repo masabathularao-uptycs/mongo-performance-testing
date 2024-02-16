@@ -46,7 +46,7 @@ def generate_update_filter(collection_name):
 def upsert_documents(collection,collection_name,count_of_curr_doc):
     # update_filter = generate_update_filter(collection_name)
     # result = collection.update_one(update_filter, {"$set": get_base_document()}, upsert=True)
-    update_operations = [UpdateOne(generate_update_filter(collection_name), {"$set": generate_dictionary(count_of_curr_doc/10000)},upsert=True) for _ in range(UPDATES_IN_EACH_BULKWRITE)]
+    update_operations = [UpdateOne(generate_update_filter(collection_name), {"$set": generate_dictionary(int(count_of_curr_doc/10000))},upsert=True) for _ in range(UPDATES_IN_EACH_BULKWRITE)]
 
     result = collection.bulk_write(update_operations)
 
