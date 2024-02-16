@@ -2,6 +2,7 @@ from bson import ObjectId
 import uuid
 from datetime import datetime
 from pymongo import UpdateOne,MongoClient
+from generate_dynamic_dicts import generate_dictionary
 
 TAG="remote"
 database_name="database"
@@ -42,10 +43,10 @@ def generate_update_filter(collection_name):
 # upt_table_key_name
 # upt_table_key_value
 
-def upsert_documents(collection,collection_name):
+def upsert_documents(collection,collection_name,count_of_curr_doc):
     # update_filter = generate_update_filter(collection_name)
     # result = collection.update_one(update_filter, {"$set": get_base_document()}, upsert=True)
-    update_operations = [UpdateOne(generate_update_filter(collection_name), {"$set": get_base_document()},upsert=True) for _ in range(UPDATES_IN_EACH_BULKWRITE)]
+    update_operations = [UpdateOne(generate_update_filter(collection_name), {"$set": generate_dictionary(count_of_curr_doc/10000)},upsert=True) for _ in range(UPDATES_IN_EACH_BULKWRITE)]
 
     result = collection.bulk_write(update_operations)
 
@@ -58,7 +59,7 @@ def upsert_documents(collection,collection_name):
 def start_upsertion(collection,collection_name):
     for _ in range(NUM_DOCS_EACH_THREAD_TO_INSERT):
         print(f"Upserting {UPDATES_IN_EACH_BULKWRITE} documents into '{collection_name}' , count : {_}")
-        upsert_documents(collection,collection_name)
+        upsert_documents(collection,collection_name,_)
 
 
 def connect(TAG):
