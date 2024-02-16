@@ -8,8 +8,8 @@ database_name="database"
 # collection_name="collection"
 remote_node="s1cloudsim1c"
 
-TOTAL_COLLECTIONS=250
-NUM_DOCS_EACH_THREAD_TO_INSERT=1334*10
+TOTAL_COLLECTIONS=1
+NUM_DOCS_EACH_THREAD_TO_INSERT=1334*10 * 250
 UPDATES_IN_EACH_BULKWRITE=3
 
 

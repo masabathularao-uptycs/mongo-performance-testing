@@ -1,5 +1,5 @@
 from config import *
-
+from time import sleep
 def create_collections(db):
     num = len(db.list_collection_names())
     print("Current no. of collections : " , num)
@@ -16,5 +16,6 @@ def create_collections(db):
 
 client = connect(TAG)
 client.drop_database(database_name)
+sleep(60)
 db = client.get_database(database_name)
 create_collections(db)
