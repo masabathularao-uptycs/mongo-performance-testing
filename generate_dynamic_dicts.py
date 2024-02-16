@@ -1,7 +1,7 @@
-def generate_dictionary(kilobytes):
-    print("kilobytes : ",kilobytes)
+def generate_dictionary(bytes_count):
+    print("kilobytes : ",bytes_count/1024)
     # Calculate the number of bytes
-    bytes_count = kilobytes * 1024
+    # bytes_count = kilobytes * 1024
     
     # Each key-value pair in the dictionary will be a string of length 100 bytes
     key_value_size = 100
