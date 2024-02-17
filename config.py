@@ -9,9 +9,18 @@ database_name="database"
 # collection_name="collection"
 remote_node="s1cloudsim1c"
 
-TOTAL_COLLECTIONS=1
-NUM_DOCS_EACH_THREAD_TO_INSERT=1334*10 * 250
-UPDATES_IN_EACH_BULKWRITE=3
+dynamic_msg_size_test=True
+
+if dynamic_msg_size_test:
+    #insertionrate VS size
+    TOTAL_COLLECTIONS=1
+    NUM_DOCS_EACH_THREAD_TO_INSERT=1000*100
+    UPDATES_IN_EACH_BULKWRITE=3
+else:
+    #normal
+    TOTAL_COLLECTIONS=1
+    NUM_DOCS_EACH_THREAD_TO_INSERT=1334*10 * 250
+    UPDATES_IN_EACH_BULKWRITE=3
 
 
 # Largest document found in collection 'aws_principal_cloudaudit':
@@ -46,7 +55,11 @@ def generate_update_filter(collection_name):
 def upsert_documents(collection,collection_name,count_of_curr_doc):
     # update_filter = generate_update_filter(collection_name)
     # result = collection.update_one(update_filter, {"$set": get_base_document()}, upsert=True)
-    update_operations = [UpdateOne(generate_update_filter(collection_name), {"$set": generate_dictionary(int(count_of_curr_doc/33.33333))},upsert=True) for _ in range(UPDATES_IN_EACH_BULKWRITE)]
+    if dynamic_msg_size_test:
+        base_dict=generate_dictionary(int(count_of_curr_doc/0.75))
+    else:
+        base_dict=get_base_document()
+    update_operations = [UpdateOne(generate_update_filter(collection_name), {"$set": base_dict},upsert=True) for _ in range(UPDATES_IN_EACH_BULKWRITE)]
 
     result = collection.bulk_write(update_operations)
 

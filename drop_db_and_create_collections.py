@@ -16,6 +16,6 @@ def create_collections(db):
 
 client = connect(TAG)
 client.drop_database(database_name)
-sleep(60)
+# sleep(60)
 db = client.get_database(database_name)
 create_collections(db)
