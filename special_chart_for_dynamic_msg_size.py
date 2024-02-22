@@ -2,11 +2,15 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 
-MAIN = "sequential-2"
+MAIN = "dynamic_msg_size"
 # Step 1: Read CSV file and extract last two columns
-df = pd.read_csv(f'{MAIN}.csv')
+df = pd.read_csv(f'{MAIN}.csv',header=None)
+# print(df)
 x_values = df.iloc[:, -2]  # Second to last column
+print(x_values)
 y_values = df.iloc[:, -1]  # Last column
+x_values_for_rate=y_values/(3*0.75*1024)
+
 
 # Step 2: Create plot
 plt.figure(figsize=(10, 6))  # Adjust figure size as needed
@@ -32,9 +36,10 @@ for i in range(1, len(y_values)):
 # Plot the rate of insertion 
 plt.figure(figsize=(10, 6))  # Adjust figure size as needed
 
-plt.plot(x_values, insertion_rate)
-plt.xlabel('Time')
+plt.plot(x_values_for_rate, insertion_rate)
+plt.xlabel('size of the document')
 plt.ylabel('Rate of Insertion per min')
 plt.title('Rate of Insertion Over Time')
+plt.xticks(range(0, int(max(x_values_for_rate)), 5))
 plt.grid(True)
 plt.savefig(f'{MAIN}_rate_of_insertion.png', bbox_inches='tight')

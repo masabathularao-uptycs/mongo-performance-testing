@@ -9,7 +9,7 @@ database_name="database"
 # collection_name="collection"
 remote_node="s1cloudsim1c"
 
-dynamic_msg_size_test=True
+dynamic_msg_size_test=False
 
 if dynamic_msg_size_test:
     #insertionrate VS size
