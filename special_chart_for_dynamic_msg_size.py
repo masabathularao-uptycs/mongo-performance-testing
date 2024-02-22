@@ -7,9 +7,8 @@ MAIN = "dynamic_msg_size"
 df = pd.read_csv(f'{MAIN}.csv',header=None)
 # print(df)
 x_values = df.iloc[:, -2]  # Second to last column
-print(x_values)
 y_values = df.iloc[:, -1]  # Last column
-x_values_for_rate=y_values/(3*0.75*1024)
+x_values_for_rate=y_values/(3*10000)
 
 
 # Step 2: Create plot
@@ -34,12 +33,12 @@ for i in range(1, len(y_values)):
     insertion_rate.append(rate)
 
 # Plot the rate of insertion 
-plt.figure(figsize=(10, 6))  # Adjust figure size as needed
+plt.figure(figsize=(15, 6))  # Adjust figure size as needed
 
 plt.plot(x_values_for_rate, insertion_rate)
 plt.xlabel('size of the document')
 plt.ylabel('Rate of Insertion per min')
 plt.title('Rate of Insertion Over Time')
-plt.xticks(range(0, int(max(x_values_for_rate)), 5))
+plt.xticks(range(0, int(max(x_values_for_rate)), 1))
 plt.grid(True)
 plt.savefig(f'{MAIN}_rate_of_insertion.png', bbox_inches='tight')

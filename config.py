@@ -9,12 +9,12 @@ database_name="database"
 # collection_name="collection"
 remote_node="s1cloudsim1c"
 
-dynamic_msg_size_test=False
+dynamic_msg_size_test=True
 
 if dynamic_msg_size_test:
     #insertionrate VS size
     TOTAL_COLLECTIONS=1
-    NUM_DOCS_EACH_THREAD_TO_INSERT=1000*100
+    NUM_DOCS_EACH_THREAD_TO_INSERT=1000*100*5
     UPDATES_IN_EACH_BULKWRITE=3
 else:
     #normal
@@ -56,7 +56,10 @@ def upsert_documents(collection,collection_name,count_of_curr_doc):
     # update_filter = generate_update_filter(collection_name)
     # result = collection.update_one(update_filter, {"$set": get_base_document()}, upsert=True)
     if dynamic_msg_size_test:
-        base_dict=generate_dictionary(int(count_of_curr_doc/0.75))
+        # base_dict=generate_dictionary(int(count_of_curr_doc/0.75))
+        temp = int(count_of_curr_doc/10000)+1
+        print(f" current document count : {count_of_curr_doc} , size of current doc generated in KB : {temp}")
+        base_dict = generate_dictionary(temp*1024)
     else:
         base_dict=get_base_document()
     update_operations = [UpdateOne(generate_update_filter(collection_name), {"$set": base_dict},upsert=True) for _ in range(UPDATES_IN_EACH_BULKWRITE)]
