@@ -4,7 +4,7 @@ from datetime import datetime
 from pymongo import UpdateOne,MongoClient
 from generate_dynamic_dicts import generate_dictionary
 
-TAG="remote"
+TAG="local"
 database_name="database"
 # collection_name="collection"
 remote_node="s1cloudsim1c"
@@ -19,7 +19,7 @@ if dynamic_msg_size_test:
 else:
     #normal
     TOTAL_COLLECTIONS=100
-    NUM_DOCS_EACH_THREAD_TO_INSERT=1852
+    NUM_DOCS_EACH_THREAD_TO_INSERT=185
     UPDATES_IN_EACH_BULKWRITE=3
 
 

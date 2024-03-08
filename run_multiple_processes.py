@@ -3,10 +3,10 @@ import os
 
 def run_process():
     # Replace 'your_script.py' with the name of your Python file
-    os.system("python load.py")
+    os.system("python3 load.py")
 
 if __name__ == '__main__':
-    num_processes = 18
+    num_processes = 57
     processes = []
 
     for _ in range(num_processes):
