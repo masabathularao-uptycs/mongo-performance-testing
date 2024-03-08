@@ -9,7 +9,7 @@ database_name="database"
 # collection_name="collection"
 remote_node="s1cloudsim1c"
 
-dynamic_msg_size_test=True
+dynamic_msg_size_test=False
 
 if dynamic_msg_size_test:
     #insertionrate VS size
@@ -18,8 +18,8 @@ if dynamic_msg_size_test:
     UPDATES_IN_EACH_BULKWRITE=3
 else:
     #normal
-    TOTAL_COLLECTIONS=1
-    NUM_DOCS_EACH_THREAD_TO_INSERT=1334*10 * 250
+    TOTAL_COLLECTIONS=100
+    NUM_DOCS_EACH_THREAD_TO_INSERT=1852
     UPDATES_IN_EACH_BULKWRITE=3
 
 

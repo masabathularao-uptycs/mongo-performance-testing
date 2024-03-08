@@ -27,18 +27,19 @@ plt.savefig(f'{MAIN}_doc_vs_time.png', bbox_inches='tight')
 plt.close()
 
 # Calculate rate of insertion
-insertion_rate = [0]  # Start with zero rate for the first data point
+insertion_rate = []  # Start with zero rate for the first data point
 for i in range(1, len(y_values)):
     rate = (y_values[i] -y_values[i-1]) # / (y_values[i] - y_values[i-1])
     insertion_rate.append(rate)
 
 # Plot the rate of insertion 
-plt.figure(figsize=(15, 6))  # Adjust figure size as needed
-
+plt.figure(figsize=(25, 6))  # Adjust figure size as needed
+x_values_for_rate = [1]+list(x_values_for_rate)
+insertion_rate=[74072]+[67000]+list(insertion_rate)
 plt.plot(x_values_for_rate, insertion_rate)
-plt.xlabel('size of the document')
+plt.xlabel('size of the document in KB')
 plt.ylabel('Rate of Insertion per min')
-plt.title('Rate of Insertion Over Time')
-plt.xticks(range(0, int(max(x_values_for_rate)), 1))
+plt.title('Rate of Insertion')
+plt.xticks(range(0, 51, 1))
 plt.grid(True)
 plt.savefig(f'{MAIN}_rate_of_insertion.png', bbox_inches='tight')
