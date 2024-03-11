@@ -1,25 +1,26 @@
-from bson import ObjectId
+# from bson import ObjectId
 import uuid
 from datetime import datetime
 from pymongo import UpdateOne,MongoClient
 from generate_dynamic_dicts import generate_dictionary
 
-TAG="local"
+TAG="remote"
 database_name="database"
 # collection_name="collection"
-remote_node="s1cloudsim1c"
+remote_node="s1cloudsim1b"
 
 dynamic_msg_size_test=False
 
 if dynamic_msg_size_test:
     #insertionrate VS size
-    TOTAL_COLLECTIONS=1
-    NUM_DOCS_EACH_THREAD_TO_INSERT=1000*100*5
-    UPDATES_IN_EACH_BULKWRITE=3
+    # TOTAL_COLLECTIONS=1
+    # NUM_DOCS_EACH_THREAD_TO_INSERT=184*10
+    # UPDATES_IN_EACH_BULKWRITE=3
+    pass
 else:
     #normal
-    TOTAL_COLLECTIONS=100
-    NUM_DOCS_EACH_THREAD_TO_INSERT=185
+    TOTAL_COLLECTIONS=250
+    NUM_DOCS_EACH_THREAD_TO_INSERT=163
     UPDATES_IN_EACH_BULKWRITE=3
 
 

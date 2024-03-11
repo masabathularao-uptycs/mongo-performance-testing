@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 
-MAIN = "sequential-2"
+MAIN = "250coll_100pro_2200conn"
 # Step 1: Read CSV file and extract last two columns
 df = pd.read_csv(f'{MAIN}.csv')
 x_values = df.iloc[:, -2]  # Second to last column
