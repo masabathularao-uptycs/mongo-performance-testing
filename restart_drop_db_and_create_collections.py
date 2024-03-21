@@ -1,6 +1,7 @@
 from config import *
 from time import sleep
 import socket,paramiko
+from check_mongo_status import check_mongo_nodes_health
 
 def create_collections(db):
     num = len(db.list_collection_names())
@@ -46,8 +47,10 @@ def restart_nodes():
         execute_command_in_node(node,command)
 
 client = connect(TAG)
+check_mongo_nodes_health(client)
 client.drop_database(database_name)
 restart_nodes()
 # sleep(60)
 db = client.get_database(database_name)
 create_collections(db)
+client.close()
