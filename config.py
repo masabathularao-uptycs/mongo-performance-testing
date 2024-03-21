@@ -6,8 +6,7 @@ from generate_dynamic_dicts import generate_dictionary
 
 TAG="remote"
 database_name="database"
-# collection_name="collection"
-remote_node="s1cloudsim1b"
+remote_node="s1cloudsim1c"
 
 dynamic_msg_size_test=False
 
